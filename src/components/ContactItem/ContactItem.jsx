@@ -7,7 +7,7 @@ export default function ContactItem({ id, name, number }) {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <div className={s.div}>
       <span>
         {name}: {number}
       </span>
@@ -19,7 +19,7 @@ export default function ContactItem({ id, name, number }) {
       >
         Delete
       </button>
-    </>
+    </div>
   );
 }
 

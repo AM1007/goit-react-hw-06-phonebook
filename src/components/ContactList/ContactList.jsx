@@ -13,7 +13,7 @@ export default function ContactList() {
 
   if (contactsFiltered) {
     return (
-      <ul>
+      <ul className={s.ul}>
         {contactsFiltered.map(({ id, name, number }) => (
           <li className={s.li} key={id}>
             <ContactItem id={id} name={name} number={number} />
