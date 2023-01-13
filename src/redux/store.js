@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -9,25 +8,23 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { myContactSlice } from './slices/contactSlice';
-import { myFilterSlice } from './slices/filterSlice';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { myContactsSlice } from './contacts/slice';
 
 const persistConfig = {
-  key: 'root',
+  key: 'contacts',
   storage,
 };
 
-const persistedContactReducer = persistReducer(
+export const myContactsReducer = persistReducer(
   persistConfig,
-  myContactSlice.reducer
+  myContactsSlice.reducer
 );
 
 export const store = configureStore({
   reducer: {
-    contacts: persistedContactReducer,
-
-    filter: myFilterSlice.reducer,
+    contacts: myContactsReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
